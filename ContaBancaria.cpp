@@ -24,14 +24,14 @@ void ContaBancaria::depositar(double valor){
     }
 }
 
-int ContaBancaria::verificarvalor(double valor){
+int ContaBancaria::verificar_valor(double valor){
     if (valor < this->saldo && valor > 0){
         return 1;
     } else if (valor > this->saldo){
         std::cout << "Saldo insuficiente!" << std::endl;
         return 0;
     } else {
-        std::cout << "Valor invalido"
+        std::cout << "Valor invalido" << std::endl;
         return 0;
     }
 } 
