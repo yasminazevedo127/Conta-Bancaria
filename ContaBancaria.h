@@ -11,6 +11,7 @@ public:
     ContaBancaria(int numero, Cliente titular, double saldo = 0);
     int getNumero();
     double getSaldo();
+    int verificar_valor(double valor);
     void depositar(double valor);
     void sacar(double valor);
     void transferir(double valor, ContaBancaria &destino);

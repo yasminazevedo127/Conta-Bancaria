@@ -19,19 +19,32 @@ double ContaBancaria::getSaldo(){ return this->saldo; }
 
 // Adiciona um valor ao saldo da conta
 void ContaBancaria::depositar(double valor){
-    this->saldo += valor;
+    if (valor > 0){
+        this->saldo += valor;
+    }
 }
 
+int ContaBancaria::verificarvalor(double valor){
+    if (valor < this->saldo && valor > 0){
+        return 1;
+    } else if (valor > this->saldo){
+        std::cout << "Saldo insuficiente!" << std::endl;
+        return 0;
+    } else {
+        std::cout << "Valor invalido"
+        return 0;
+    }
+} 
 // Subtrai um valor do saldo da conta, se houver saldo suficiente
 void ContaBancaria::sacar(double valor){
-    if (valor < this->saldo){
+    if (verificar_valor(valor) == 1){
         this->saldo -= valor;
     }
 }
 
 // Transfere um valor para outra conta, se houver saldo suficiente
 void ContaBancaria::transferir(double valor, ContaBancaria &destino){
-    if (valor < this->saldo){
+    if (verificar_valor(valor) == 1){
         sacar(valor);
         destino.depositar(valor);
         std::cout << "Transferido: R$ " << valor << " da conta " << getNumero() << " para a conta " << destino.numero << std::endl;
@@ -40,7 +53,7 @@ void ContaBancaria::transferir(double valor, ContaBancaria &destino){
 
 // Transfere um valor dividido igualmente entre duas contas de destino
 void ContaBancaria::transferir(double valor, ContaBancaria &destino1, ContaBancaria &destino2){
-    if (valor < this->saldo){
+    if (verificar_valor(valor) == 1){
         sacar(valor);
         destino1.depositar(valor / 2);
         destino2.depositar(valor / 2);
