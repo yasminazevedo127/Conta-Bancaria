@@ -25,13 +25,9 @@ void ContaBancaria::depositar(double valor){
 }
 
 int ContaBancaria::verificar_valor(double valor){
-    if (valor < this->saldo && valor > 0){
+    if (valor <= this->saldo && valor > 0){
         return 1;
-    } else if (valor > this->saldo){
-        std::cout << "Saldo insuficiente!" << std::endl;
-        return 0;
     } else {
-        std::cout << "Valor invalido" << std::endl;
         return 0;
     }
 } 
@@ -39,6 +35,10 @@ int ContaBancaria::verificar_valor(double valor){
 void ContaBancaria::sacar(double valor){
     if (verificar_valor(valor) == 1){
         this->saldo -= valor;
+    } else if (valor > this->saldo){
+        std::cout << "Saldo insuficiente!" << std::endl;
+    } else {
+        std::cout << "Valor invalido" << std::endl;
     }
 }
 
@@ -48,6 +48,10 @@ void ContaBancaria::transferir(double valor, ContaBancaria &destino){
         sacar(valor);
         destino.depositar(valor);
         std::cout << "Transferido: R$ " << valor << " da conta " << getNumero() << " para a conta " << destino.numero << std::endl;
+    } else if (valor > this->saldo){
+        std::cout << "Saldo insuficiente!" << std::endl;
+    } else {
+        std::cout << "Valor invalido!" << std::endl;
     }
 }
 
@@ -58,6 +62,10 @@ void ContaBancaria::transferir(double valor, ContaBancaria &destino1, ContaBanca
         destino1.depositar(valor / 2);
         destino2.depositar(valor / 2);
         std::cout << "Transferido: R$ " << (valor / 2) << " para cada conta (" << destino1.numero << " e " << destino2.numero << ") da conta " << getNumero() << std::endl;
+    } else if (valor > this->saldo){
+        std::cout << "Saldo insuficiente!" << std::endl;
+    } else {
+        std::cout << "Valor invalido" << std::endl;
     }
 }
 

@@ -19,10 +19,13 @@ int main() {
     conta1.exibirSaldo();
 
     // Deposita R$100 na conta de Ana
-    conta2.depositar(100.0);
+    conta1.depositar(100.0);
 
     // Sacar R$50 da conta de Bruno 
-    conta2.sacar(50.0);
+    conta2.sacar(100.0);
+
+    // Ana tenta transferir R$1100 para  Carla 
+    conta1.transferir(1100.0, conta3);
 
     // Ana transfere R$200 para Bruno
     conta1.transferir(200.0, conta2);
