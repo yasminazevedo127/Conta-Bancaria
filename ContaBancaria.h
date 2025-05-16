@@ -7,7 +7,6 @@ private:
     double saldo;
     Cliente titular;
 public:
-    ContaBancaria();
     ContaBancaria(int numero, Cliente titular, double saldo = 0);
     int getNumero();
     double getSaldo();
